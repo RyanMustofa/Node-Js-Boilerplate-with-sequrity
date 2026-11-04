@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %> | Payboard</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="/assets/css/backoffice.css?v=2" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="backoffice-sidebar" aria-label="Navigasi backoffice">
+        <a class="brand" href="/bo/dashboard">
+          <span class="brand-icon"><i class="bi bi-grid-1x2-fill"></i></span>
+          <span>Payboard</span>
+        </a>
+        <button class="btn sidebar-close" type="button" aria-label="Tutup menu" data-sidebar-close>
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+        <div class="nav-label">Workspace</div>
+        <nav>
+          <a class="side-link <%= activePage === 'dashboard' ? 'active' : '' %>" href="/bo/dashboard"><i class="bi bi-grid"></i>Dashboard</a>
+          <a class="side-link <%= activePage === 'transactions' ? 'active' : '' %>" href="/bo/transactions"><i class="bi bi-arrow-left-right"></i>Transactions</a>
+          <a class="side-link <%= activePage === 'payouts' ? 'active' : '' %>" href="/bo/payouts"><i class="bi bi-send"></i>Payouts</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="d-flex align-items-center gap-2 small">
+            <i class="bi bi-circle-fill text-success demo-status-icon"></i>
+            <span>Demo environment</span>
+          </div>
+        </div>
+      </aside>
+      <button class="sidebar-backdrop" type="button" aria-label="Tutup menu" data-sidebar-close hidden></button>
+      <div class="main-area">
+        <header class="topbar">
+          <div class="topbar-heading">
+            <button
+              class="btn sidebar-toggle"
+              type="button"
+              aria-label="Buka menu"
+              aria-controls="backoffice-sidebar"
+              aria-expanded="false"
+              data-sidebar-toggle
+            >
+              <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+            <div>
+            <p class="topbar-title"><%= title %></p>
+            <p class="topbar-subtitle">Payment operations overview</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="d-none d-sm-inline text-muted-custom small">Halo, <strong class="text-dark"><%= user.name %></strong></span>
+            <span class="avatar" aria-label="<%= user.name %>">AD</span>
+            <form method="post" action="/bo/logout" class="ms-1">
+              <button type="submit" class="btn btn-sm btn-outline-secondary" aria-label="Keluar" title="Keluar"><i class="bi bi-box-arrow-right"></i></button>
+            </form>
+          </div>
+        </header>
+        <main class="content">
+          <%- include(pageContent) %>
+        </main>
+      </div>
+    </div>
+    <script src="/assets/js/backoffice.js?v=2" defer></script>
+  </body>
+</html>

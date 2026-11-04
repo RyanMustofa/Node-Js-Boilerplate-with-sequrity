@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %> | Payboard</title>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="/assets/css/backoffice.css" rel="stylesheet">
+  </head>
+  <body class="login-body">
+    <div class="container-fluid login-wrap p-0">
+      <div class="row g-0 min-vh-100">
+        <aside class="col-md-6 col-xl-7 login-aside d-flex align-items-center p-5">
+          <div class="aside-content mx-auto">
+            <div class="d-flex align-items-center gap-3 mb-5">
+              <span class="brand-mark"><i class="bi bi-grid-1x2-fill"></i></span>
+              <span class="fs-4 fw-bold">Payboard</span>
+            </div>
+            <p class="text-uppercase small fw-semibold opacity-75 mb-3">Payment operations</p>
+            <h1 class="display-5 fw-semibold lh-sm mb-4">Semua operasional pembayaran, dalam satu kendali.</h1>
+            <p class="fs-5 opacity-75 mb-5">Pantau transaksi dan payout dengan tampilan yang jelas, ringkas, dan terpusat.</p>
+            <div class="d-flex gap-4 small opacity-75">
+              <span><i class="bi bi-shield-check me-2"></i>Akses terproteksi</span>
+              <span><i class="bi bi-activity me-2"></i>Monitoring real-time</span>
+            </div>
+          </div>
+        </aside>
+        <main class="col-md-6 col-xl-5 d-flex align-items-center justify-content-center p-4 p-lg-5">
+          <div class="w-100 login-form-container">
+            <div class="d-md-none d-flex align-items-center gap-2 mb-5">
+              <span class="brand-mark"><i class="bi bi-grid-1x2-fill"></i></span>
+              <span class="fs-4 fw-bold">Payboard</span>
+            </div>
+            <p class="small text-primary fw-semibold text-uppercase mb-2">Welcome back</p>
+            <h2 class="h3 fw-bold mb-2">Masuk ke backoffice</h2>
+            <p class="text-secondary mb-4">Gunakan akun demo untuk melihat dashboard.</p>
+            <% if (error) { %>
+              <div class="alert alert-danger py-2" role="alert"><%= error %></div>
+            <% } %>
+            <form method="post" action="/bo/login">
+              <div class="mb-3">
+                <label for="username" class="form-label fw-medium">Email</label>
+                <input class="form-control" id="username" name="username" type="email" placeholder="admin@demo.local" value="<%= username %>" autocomplete="username" required autofocus>
+              </div>
+              <div class="mb-4">
+                <label for="password" class="form-label fw-medium">Password</label>
+                <input class="form-control" id="password" name="password" type="password" placeholder="Masukkan password" autocomplete="current-password" required>
+              </div>
+              <button class="btn btn-primary w-100" type="submit">Masuk <i class="bi bi-arrow-right ms-2"></i></button>
+            </form>
+            <div class="demo-card p-3 mt-4">
+              <div class="small fw-semibold mb-2"><i class="bi bi-info-circle me-2 text-primary"></i>Akun demo</div>
+              <div class="small text-secondary">Email: <code>admin@demo.local</code></div>
+              <div class="small text-secondary">Password: <code>Demo123!</code></div>
+            </div>
+            <p class="small text-secondary text-center mt-4 mb-0">Demo backoffice · data tidak tersimpan ke database</p>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
