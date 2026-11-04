@@ -29,7 +29,7 @@ Boilerplate API pembayaran berbasis Node.js, Express, dan EJS. Project ini memil
    npm install
    ```
 
-2. Salin `.env.example` jika tersedia, atau buat file `.env` di root project dengan konfigurasi sesuai bagian [Environment variables](#environment-variables).
+2. Buat file `.env` di root project dengan konfigurasi sesuai bagian [Environment variables](#environment-variables).
 
 3. Jalankan MySQL dan Redis apabila akan menggunakan migration atau API payout.
 
@@ -92,10 +92,11 @@ Signature dihitung dari JSON body yang sudah diparse, diserialisasi kembali deng
 Contoh menghitung signature untuk body yang sama:
 
 ```bash
-node -e "const crypto=require('crypto'); const body={userId:'USR-1001',amount:125000,currency:'IDR',referenceId:'PO-EXAMPLE-001',metadata:{source:'backoffice'}}; console.log(crypto.createHmac('sha256',process.env.PAYOUT_SIGNATURE_SECRET).update(JSON.stringify(body)).digest('hex'))"
+node -e "require('dotenv').config(); const crypto=require('crypto'); const body={userId:'USR-1001',amount:125000,currency:'IDR',referenceId:'PO-EXAMPLE-001',metadata:{source:'backoffice'}}; console.log(crypto.createHmac('sha256',process.env.PAYOUT_SIGNATURE_SECRET).update(JSON.stringify(body)).digest('hex'))"
 ```
 
 Pastikan nilai `X-Signature` dibuat dari payload yang sama persis.
+Untuk `GET /api/payouts/:id`, body kosong sehingga signature dihitung dari string kosong.
 
 `GET /health` menyediakan pemeriksaan dasar status HTTP. Endpoint ini tidak memeriksa konektivitas MySQL atau Redis.
 
